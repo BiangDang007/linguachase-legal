@@ -1,5 +1,283 @@
-<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LinguaChase</title></head>
-<body style="font-family:-apple-system,'PingFang TC',sans-serif;max-width:720px;margin:2rem auto;padding:0 1.25rem;line-height:1.7">
-<h1>LinguaChase</h1><ul><li><a href="privacy.html">隱私政策 Privacy Policy</a></li><li><a href="terms.html">服務條款 Terms of Service</a></li></ul>
-<h2>客服 Support</h2><p>問題回報、帳號與資料請求：<a href="mailto:linguachase@gmail.com">linguachase@gmail.com</a></p>
-</body></html>
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LinguaChase｜英檢精熟</title>
+<meta name="description" content="IELTS／TOEFL／TOEIC 原創題庫隨時練，AI 作文批改、口說模擬考（AI 考官語音）、錯題本與能力雷達，依讀書天數自動排課。目前版本免費開放使用。">
+<link rel="icon" href="assets/icon.png">
+<meta property="og:title" content="LinguaChase｜英檢精熟">
+<meta property="og:description" content="IELTS／TOEFL／TOEIC 原創題庫隨時練，AI 作文批改、口說模擬考（AI 考官語音）、錯題本與能力雷達，依讀書天數自動排課。目前版本免費開放使用。">
+<meta property="og:image" content="assets/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Noto+Serif+TC:wght@500;700&family=Public+Sans:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --surface:#FFFCF0; --ink:#261412; --border:#D4CDC4;
+    --dark-bg:#261312; --badge-bg:rgba(255,255,255,.42);
+    --primary:#7ACEFF; --primary-border:#497E9C;
+    --secondary-bg:#FFFCF0; --secondary-border:#BDB5AD;
+    --marquee-bg:#E6E0FF;
+    --serif:"Young Serif","Noto Serif TC",serif;
+    --sans:"Public Sans","Noto Sans TC",sans-serif;
+    --mono:"Share Tech Mono","Noto Sans TC",monospace;
+  }
+  *{box-sizing:border-box}
+  html{background:var(--surface)}
+  body{margin:0;background:var(--surface);color:var(--ink);font-family:var(--sans);line-height:1.55;overflow-x:hidden}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+
+  /* marquee */
+  .marquee{background:var(--marquee-bg);border-bottom:1px solid var(--border);overflow:hidden;white-space:nowrap;padding:8px 0}
+  .marquee-track{display:inline-flex;gap:2.5rem;animation:scroll 22s linear infinite;font-family:var(--mono);font-size:.8rem;letter-spacing:.02em}
+  .marquee-track span{display:inline-flex;gap:2.5rem;padding-right:2.5rem}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @media (prefers-reduced-motion: reduce){.marquee-track{animation:none}}
+
+  /* nav */
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;border-bottom:1px solid var(--border)}
+  .brand{display:flex;align-items:center;gap:8px;font-family:var(--serif);font-size:1.1rem;text-decoration:none}
+  .brand img{width:28px;height:28px;border-radius:8px}
+  .nav-links{display:none;gap:1.5rem;font-family:var(--mono);font-size:.82rem}
+  .nav-links a{text-decoration:none}
+  .nav-links a:hover{text-decoration:underline}
+  @media (min-width:820px){.nav-links{display:flex}}
+
+  /* buttons */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:.4rem;border-radius:12px;padding:12px 16px;font-family:var(--mono);font-size:.9rem;text-decoration:none;border:1px solid transparent;white-space:nowrap;min-height:44px}
+  .btn-primary{background:var(--primary);border-color:var(--primary-border);color:var(--ink)}
+  .btn-secondary{background:var(--secondary-bg);border-color:var(--secondary-border);color:var(--ink)}
+  .btn-sm{padding:9px 14px;font-size:.78rem;min-height:40px}
+
+  /* hero */
+  .hero{position:relative;padding:64px 16px 48px;text-align:center;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:-20% -10% auto -10%;height:420px;
+    background:radial-gradient(closest-side,#FFE3B0,transparent 70%),radial-gradient(closest-side at 70% 30%,#C9E7FF,transparent 70%);
+    filter:blur(10px);z-index:0;pointer-events:none}
+  .hero-inner{position:relative;z-index:1;max-width:640px;margin:0 auto}
+  .badge{display:inline-flex;align-items:center;background:var(--badge-bg);border:1px solid var(--border);border-radius:9999px;padding:6px 16px;font-family:var(--mono);font-size:.78rem;margin-bottom:20px}
+  .hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.375rem,6vw + 1rem,3.75rem);line-height:1.05;margin:0 0 18px;text-wrap:balance}
+  .hero p{font-size:1rem;margin:0 auto 28px;max-width:520px;color:#4a3733}
+  .hero-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+  .hero-caption{margin-top:14px;font-size:.8rem;color:#7a655f;font-family:var(--mono)}
+
+  /* chip row */
+  .chip-section{padding:8px 16px 40px;text-align:center}
+  .chip-section h2{font-family:var(--serif);font-weight:400;font-size:1.5rem;margin:0 0 18px}
+  .chip-row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+  .chip{font-family:var(--mono);font-size:.82rem;padding:9px 16px;border-radius:9999px;border:1px solid var(--secondary-border);background:var(--secondary-bg);cursor:pointer;min-height:44px;display:inline-flex;align-items:center}
+  .chip.active{background:var(--primary);border-color:var(--primary-border)}
+
+  /* bento */
+  .bento-section{padding:24px 16px 56px}
+  .bento-section > .wrap > h2{font-family:var(--serif);font-weight:400;font-size:1.7rem;text-align:center;margin:0 0 28px}
+  .bento{display:grid;grid-template-columns:1fr;gap:20px}
+  @media (min-width:768px){.bento{grid-template-columns:1fr 1fr}}
+  .card{background:#fff;border:1px solid var(--border);border-radius:20px;padding:22px;box-shadow:0 6px 16px rgba(38,20,18,.05)}
+  .card h3{font-family:var(--serif);font-weight:400;font-size:1.25rem;margin:0 0 8px}
+  .card p{margin:0 0 16px;font-size:.92rem;color:#4a3733}
+  .card.text-only{display:flex;flex-direction:column;justify-content:center}
+  .shots{display:flex;gap:12px;justify-content:center}
+  .phone{border:1px solid var(--border);border-radius:18px;overflow:hidden;box-shadow:0 8px 20px rgba(38,20,18,.08);flex:1;max-width:180px}
+  .phone img{width:100%;height:auto}
+
+  /* personalize */
+  .personalize{padding:24px 16px 56px}
+  .personalize .wrap > h2{font-family:var(--serif);font-weight:400;font-size:1.7rem;text-align:center;margin:0 0 28px}
+  .personalize-grid{display:grid;grid-template-columns:1fr;gap:16px;max-width:900px;margin:0 auto}
+  @media (min-width:768px){.personalize-grid{grid-template-columns:1fr 1fr}}
+  .pq{background:#fff;border:1px solid var(--border);border-radius:16px;padding:18px}
+  .pq h4{font-family:var(--mono);font-size:.8rem;margin:0 0 10px;color:#7a655f}
+  .result-card{background:#fff;border:1px solid var(--border);border-radius:20px;padding:18px;display:flex;gap:16px;align-items:center;max-width:900px;margin:16px auto 0}
+  .result-card img{width:90px;height:auto;border-radius:14px;border:1px solid var(--border);flex-shrink:0}
+  .result-card div p{margin:4px 0 0;font-size:.85rem;color:#4a3733}
+  .result-card div span{font-family:var(--mono);font-size:.78rem;color:#7a655f}
+
+  /* dark section */
+  .dark{background:var(--dark-bg);color:#F5EDE6;padding:48px 16px}
+  .dark h2{font-family:var(--serif);font-weight:400;font-size:1.6rem;margin:0 0 20px;text-align:center}
+  .dark ul{max-width:680px;margin:0 auto 20px;padding:0;list-style:none}
+  .dark li{padding:10px 0;border-top:1px solid rgba(255,255,255,.14);font-size:.92rem}
+  .dark li:first-child{border-top:none}
+  .dark .note{max-width:680px;margin:0 auto;font-size:.82rem;color:#cbb9b1}
+
+  /* final cta + footer */
+  .cta{padding:56px 16px;text-align:center}
+  .cta h2{font-family:var(--serif);font-weight:400;font-size:1.8rem;margin:0 0 16px}
+  .cta-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-bottom:12px}
+  footer{border-top:1px solid var(--border);padding:24px 16px;text-align:center;font-family:var(--mono);font-size:.78rem;color:#7a655f}
+  footer a{text-decoration:none}
+  footer a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+
+<div class="marquee">
+  <div class="marquee-track">
+    <span>全部題目原創編寫 · AI 作文批改 · AI 口說模擬考 · 目前免費　</span>
+    <span>全部題目原創編寫 · AI 作文批改 · AI 口說模擬考 · 目前免費　</span>
+  </div>
+</div>
+
+<header class="nav">
+  <a class="brand" href="#top">
+    <img src="assets/icon.png" alt="LinguaChase App 圖示" width="28" height="28" loading="lazy">
+    LinguaChase
+  </a>
+  <nav class="nav-links">
+    <a href="#features">功能</a>
+    <a href="#notes">常見問題</a>
+    <a href="privacy.html">隱私</a>
+    <a href="terms.html">條款</a>
+  </nav>
+  <a class="btn btn-primary btn-sm" href="https://apps.apple.com/app/id6813793718">即將上架</a>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="hero-inner">
+      <span class="badge">IELTS · TOEFL · TOEIC</span>
+      <h1>終於，把英檢練到精熟。</h1>
+      <p>IELTS／TOEFL／TOEIC 原創題庫隨時練，AI 作文批改、口說模擬考（AI 考官語音）、錯題本與能力雷達，依讀書天數自動排課。目前版本免費開放使用。</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6813793718">App Store 即將上架</a>
+        <a class="btn btn-secondary" href="mailto:linguachase@gmail.com">寫信給我們</a>
+      </div>
+      <p class="hero-caption">iOS 版本審核中</p>
+    </div>
+  </section>
+
+  <section class="chip-section">
+    <h2>你要考哪一個？</h2>
+    <div class="chip-row" data-chips>
+      <button class="chip active" type="button">IELTS Academic</button>
+      <button class="chip" type="button">IELTS General</button>
+      <button class="chip" type="button">TOEFL iBT</button>
+      <button class="chip" type="button">TOEIC L&amp;R</button>
+      <button class="chip" type="button">雅思口說</button>
+      <button class="chip" type="button">托福寫作</button>
+    </div>
+  </section>
+
+  <section class="bento-section" id="features">
+    <div class="wrap">
+      <h2>四個核心功能</h2>
+      <div class="bento">
+        <div class="card">
+          <h3>練習與題庫</h3>
+          <p>閱讀與聽力練習題，依題型、難度、主題篩選；題型歸類成是非題、填空、配對等家族，方便集中練弱項。錯題到期自動排入複習。</p>
+          <div class="shots">
+            <div class="phone"><img src="assets/shots/02-practice-filters.png" alt="練習篩選畫面截圖" loading="lazy" width="462" height="1000"></div>
+            <div class="phone"><img src="assets/shots/03-question.png" alt="練習題目畫面截圖" loading="lazy" width="462" height="1000"></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>AI 作文批改</h3>
+          <p>輸入 IELTS 作文，拿到四項評分（Task Response、Coherence、Lexical、Grammar），加上優點與改進建議。</p>
+          <div class="shots">
+            <div class="phone" style="max-width:220px"><img src="assets/shots/06-essay-result.png" alt="AI 作文批改結果畫面截圖" loading="lazy" width="462" height="1000"></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>AI 口說模擬考</h3>
+          <p>IELTS 面對面問答、TOEFL 新制、TOEIC 三種方案，AI 考官語音全程帶你走，結束後拿到分項評分與逐題回饋。</p>
+          <div class="shots">
+            <div class="phone"><img src="assets/shots/04-speaking-mock-toeic.png" alt="AI 口說模擬考畫面截圖" loading="lazy" width="462" height="1000"></div>
+            <div class="phone"><img src="assets/shots/05-speaking-report.png" alt="口說模擬考報告畫面截圖" loading="lazy" width="462" height="1000"></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>讀書計劃與能力雷達</h3>
+          <p>能力雷達與技能分析掌握度一目了然；依你回報的可讀天數自動排課，進度曲線圖僅供參考，不是保證。</p>
+          <div class="shots">
+            <div class="phone"><img src="assets/shots/07-study-plan.png" alt="讀書計劃畫面截圖" loading="lazy" width="462" height="1000"></div>
+            <div class="phone"><img src="assets/shots/08-ability-radar.png" alt="能力雷達畫面截圖" loading="lazy" width="462" height="1000"></div>
+          </div>
+        </div>
+        <div class="card text-only">
+          <h3>錯題本與 AI 家教</h3>
+          <p>到期錯題自動排入複習；隨時用中文問 AI 家教文法或應考策略。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="personalize">
+    <div class="wrap">
+      <h2>為你量身打造</h2>
+      <div class="personalize-grid">
+        <div class="pq">
+          <h4>你要考哪一個</h4>
+          <div class="chip-row" data-chips>
+            <button class="chip active" type="button">IELTS</button>
+            <button class="chip" type="button">TOEFL</button>
+            <button class="chip" type="button">TOEIC</button>
+          </div>
+        </div>
+        <div class="pq">
+          <h4>每週可讀幾天</h4>
+          <div class="chip-row" data-chips>
+            <button class="chip" type="button">3 天</button>
+            <button class="chip active" type="button">5 天</button>
+            <button class="chip" type="button">7 天</button>
+          </div>
+        </div>
+        <div class="pq">
+          <h4>強度</h4>
+          <div class="chip-row" data-chips>
+            <button class="chip" type="button">穩健</button>
+            <button class="chip active" type="button">標準</button>
+            <button class="chip" type="button">衝刺</button>
+          </div>
+        </div>
+      </div>
+      <div class="result-card">
+        <img src="assets/shots/01-home.png" alt="自動排課後的首頁畫面截圖" loading="lazy" width="462" height="1000">
+        <div>
+          <span>自動排課</span>
+          <p>依你的考試、天數與強度，排出每週練習進度曲線（僅供參考）。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dark" id="notes">
+    <h2>重要說明</h2>
+    <ul>
+      <li>本 App 與 IELTS、TOEFL、TOEIC 之主辦機構（British Council、IDP、ETS 等）無任何關聯，亦未經其認可。</li>
+      <li>所有分數與 Band 僅為 AI 估算，僅供學習參考，不代表官方成績，不保證任何考試分數或結果。</li>
+      <li>目前版本免費，無訂閱或付費項目；AI 功能有每日使用次數上限。</li>
+    </ul>
+    <p class="note">作文批改、口說評分與 AI 家教會將你提交的文字或錄音傳送至第三方 AI 服務（Google Gemini API）進行處理；口說模擬考的「考官語音」由 Fish Audio 朗讀題目文字。詳見隱私政策。</p>
+  </section>
+
+  <section class="cta">
+    <h2>準備好開始練了嗎？</h2>
+    <div class="cta-actions">
+      <a class="btn btn-primary" href="https://apps.apple.com/app/id6813793718">App Store 即將上架</a>
+      <a class="btn btn-secondary" href="mailto:linguachase@gmail.com">寫信給我們</a>
+    </div>
+    <p class="hero-caption">iOS 版本審核中</p>
+  </section>
+</main>
+
+<footer>
+  © 2026 LinguaChase · <a href="privacy.html">隱私政策</a> · <a href="terms.html">服務條款</a> · <a href="mailto:linguachase@gmail.com">聯絡我們</a>
+</footer>
+
+<script>
+  document.querySelectorAll('[data-chips]').forEach(function(row){
+    row.addEventListener('click', function(e){
+      var chip = e.target.closest('.chip');
+      if(!chip) return;
+      row.querySelectorAll('.chip').forEach(function(c){ c.classList.remove('active'); });
+      chip.classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
